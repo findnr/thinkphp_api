@@ -11,19 +11,4 @@
 time=$(date "+%Y-%m-%d %H:%M:%S")
 git add .
 git commit -m "$*=>$time"
-i=0
-info=()
-for rsync in `cat ../apigiteeautouserinfo`
-do
-    info[i]=$rsync
-    ((i++))
-done
-expect -c "
-    spawn git push
-    expect {
-        \"Username\" { send \"${info[0]}\r\";}
-    }
-    expect {
-        \"Password\" { send \"${info[1]}\r\";}
-    }
-expect eof"
+git push
