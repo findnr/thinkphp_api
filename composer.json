@@ -25,7 +25,9 @@
         "topthink/think-orm": "^2.0",
         "topthink/think-filesystem": "^1.0",
         "findnr/cym-phptools": "^1.0",
-        "topthink/think-multi-app": "^1.0"
+        "topthink/think-multi-app": "^1.0",
+        "ramsey/uuid": "^4.7",
+        "gregwar/captcha": "^1.1"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
