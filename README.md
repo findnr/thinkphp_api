@@ -1,7 +1,7 @@
 <!--
  * @Author: 程英明
  * @Date: 2022-12-23 16:24:23
- * @LastEditTime: 2022-12-24 17:21:40
+ * @LastEditTime: 2023-07-27 09:44:12
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \web_php6_server\README.md
@@ -24,4 +24,5 @@ composer require ramsey/uuid
 图片验证码库
 ```sh
 composer require gregwar/captcha
+
 ```
