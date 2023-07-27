@@ -1,7 +1,7 @@
 <!--
  * @Author: 程英明
  * @Date: 2022-12-23 16:24:23
- * @LastEditTime: 2023-07-27 10:45:07
+ * @LastEditTime: 2023-07-27 11:16:19
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \web_php6_server\README.md
@@ -12,6 +12,7 @@
 使用多应用模式
 ```sh
 composer require topthink/think-multi-app
+composer require topthink/think-filesystem
 ```
 自己封装的库
 ```sh
