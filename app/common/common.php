@@ -17,7 +17,7 @@ function id_car_sex($id_car)
  *
  * @return  string         [return description]
  */
-function jwt_en(?array $data, ?int $mode = 0): string
+function jwt_en(?array $data, ?string $mode = ''): string
 {
     $config['key'] = get_key($mode);
     $config['time'] = 60 * 60 * 8;
@@ -32,22 +32,31 @@ function jwt_en(?array $data, ?int $mode = 0): string
  *
  * @return  array           [return description]
  */
-function jwt_de(?string $token, ?int $mode = 0): array
+function jwt_de(?string $token, ?string $mode = ''): array
 {
     $config['key'] = get_key($mode);
     $config['token'] = $token;
     $data = CymJwt::token_decode($config);
     return $data;
 }
-function get_key(?int $mode = 0): string
+function get_key(?string $mode = ''): string
 {
     $key = '';
     switch ($mode) {
-        case 0:
+        case 'admin':
             $key = Config::get('key.admin_token_key');
             break;
-        case 1:
+        case 'user':
             $key = Config::get('key.user_token_key');
+            break;
+        case 'unit':
+            $key = Config::get('key.unit_token_key');
+            break;
+        case 'person':
+            $key = Config::get('key.person_token_key');
+            break;
+        case 'man':
+            $key = Config::get('key.man_token_key');
             break;
         default:
             $key = Config::get('key.user_token_key');
@@ -78,10 +87,14 @@ function check_code(?string $key = '', ?string $str = '')
  *
  * @return  Json           [return description]
  */
-function e(?string $msg = '错误信息', ?int $code = 400): Json
+function e(?string $msg = '成功信息', ?int $code = 400, ?array $datas = []): Json
 {
-    return json(['code' => $code, 'msg' => $msg]);
+    $data['code'] = $code;
+    $data['msg'] = $msg;
+    $data['data'] = $datas;
+    return json($data);
 }
+
 /**
  * 错误返回的信息
  *
@@ -90,9 +103,21 @@ function e(?string $msg = '错误信息', ?int $code = 400): Json
  *
  * @return  array           [return description]
  */
-function ea(?string $msg = '错误信息', ?int $code = 400): array
+define('EA_DE_ARR', [11 => '获取失败', 21 => '添加失败', 31 => '修改失败', 41 => '删除失败']);
+function ea($msg = '错误信息', $code = 400, $datas = []): array
 {
-    return ['code' => $code, 'msg' => $msg];
+    if (is_array($msg)) {
+        return ['msg' => '错误', 'code' => 400, 'data' => $msg];
+    }
+    $data = ['msg' => $msg, 'code' => $code, 'data' => $datas];
+    if (is_int($msg) && isset(EA_DE_ARR[$msg])) {
+        $data['msg'] = EA_DE_ARR[$msg];
+    }
+    if (is_array($code)) {
+        $data['data'] = $code;
+        $data['code'] = 400;
+    }
+    return $data;
 }
 /**
  * 正确的返回的信息,JSON
@@ -103,7 +128,7 @@ function ea(?string $msg = '错误信息', ?int $code = 400): array
  *
  * @return  Json            [return description]
  */
-function s(?string $msg = '成功信息', ?int $code = 200, ?array $datas = []): Json
+function s(?string $msg = '成功信息', ?int $code = 200, $datas = ''): Json
 {
     $data['code'] = $code;
     $data['msg'] = $msg;
@@ -119,17 +144,19 @@ function s(?string $msg = '成功信息', ?int $code = 200, ?array $datas = []):
  *
  * @return  array            [return description]
  */
-function sa(string $msg = '成功信息', int|array $code = 200, ?array $datas = []): array
+define('SA_DE_ARR', [11 => '获取成功', 21 => '添加成功', 31 => '修改成功', 41 => '删除成功']);
+function sa($msg = '成功信息', $code = 200, $datas = ''): array
 {
-    $data = [];
+    if (is_array($msg)) {
+        return ['msg' => '成功', 'code' => 200, 'data' => $msg];
+    }
+    $data = ['msg' => $msg, 'code' => $code, 'data' => $datas];
+    if (is_int($msg) && isset(SA_DE_ARR[$msg])) {
+        $data['msg'] = SA_DE_ARR[$msg];
+    }
     if (is_array($code)) {
-        $data['code'] = 200;
-        $data['msg'] = $msg;
         $data['data'] = $code;
-    } else {
-        $data['code'] = $code;
-        $data['msg'] = $msg;
-        $data['data'] = $datas;
+        $data['code'] = 200;
     }
     return $data;
 }
@@ -221,6 +248,7 @@ function auto_category(array &$data, $model = 1, array $action = []): array
         {
             $action_arr = explode(',', $action_id);
             $res_arr = [];
+            $action_arr = $action_arr[0] == 0 ? [] : $action_arr;
             array_walk($action_arr, function ($v) use (&$res_arr, &$action, $id) {
                 $res_arr[] = ['id' => $id . '|' . $v, 'name' => $action[$v]['name']];
             });
@@ -234,7 +262,7 @@ function auto_category(array &$data, $model = 1, array $action = []): array
             $refer = array();
             $tree = array();
             foreach ($array as $key => $val) {
-                if ($val['action_id'] != '') {
+                if (isset($val['action_id']) && $val['action_id'] != '') {
                     $array[$key]['children'] = getAction($val['id'], $val['action_id'], $action);
                 }
                 $refer[$val['id']] = &$array[$key];
@@ -347,4 +375,58 @@ function txt_to_arr(string $str): array
 function get_empty_val(string $data, string $default = ''): string
 {
     return empty($data) ?  $default : $data;
+}
+/**
+ * 检验身份证号的合性，使用身份号国家标准算法
+ *
+ * @param   string  $id_car  [$id_car description]
+ *
+ * @return  [type]           [return description]
+ */
+function person_id_car_validate(string $id_car)
+{
+    // 校验身份证长度和格式
+    if (!preg_match('/^\d{17}[\dX]$/', $id_car)) {
+        return false;
+    }
+    // 校验身份证最后一位校验码
+    $idCardWi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+    $idCardCheckDigit = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+    $sigma = 0;
+    for ($i = 0; $i < 17; $i++) {
+        $sigma += intval($id_car[$i]) * $idCardWi[$i];
+    }
+    $mod = $sigma % 11;
+    $checkDigit = $idCardCheckDigit[$mod];
+    if ($checkDigit != $id_car[17]) {
+        return false;
+    }
+    return true;
+}
+/**
+ * 检验统一信用代码的合性，使用身份号国家标准算法
+ *
+ * @return  [type]  [return description]
+ */
+function unit_id_car_validate($id_car)
+{
+    // 校验统一信用代码长度和格式
+    if (!preg_match('/^[0-9A-Z]{18}$/', $id_car)) {
+        return false;
+    }
+    // 校验统一信用代码校验位
+    $creditCodeWi = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28];
+    $creditCodeCheckDigit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'T', 'U', 'W', 'X', 'Y'];
+    $sigma = 0;
+    for ($i = 0; $i < 17; $i++) {
+        $codeChar = $id_car[$i];
+        $codeValue = array_search($codeChar, $creditCodeCheckDigit);
+        $sigma += $codeValue * $creditCodeWi[$i];
+    }
+    $mod = $sigma % 31;
+    $checkDigit = $creditCodeCheckDigit[$mod];
+    if ($checkDigit != $id_car[17]) {
+        return false;
+    }
+    return true;
 }

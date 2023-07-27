@@ -2,10 +2,10 @@
 /*
  * @Author: 程英明
  * @Date: 2022-12-23 16:45:41
- * @LastEditTime: 2022-12-23 16:45:45
+ * @LastEditTime: 2023-07-19 09:23:19
  * @LastEditors: 程英明
  * @Description: 
- * @FilePath: \web_server\app\common\base\ServerBase.php
+ * @FilePath: \api\app\common\base\ServerBase.php
  * QQ:504875043@qq.com
  */
 
@@ -128,5 +128,9 @@ class ServerBase
     public function __set($name, $argc)
     {
         return $this->set($name, $argc);
+    }
+    public function __call($name, $argc)
+    {
+        return ea(static::class . '此类中没有方法' . $name);
     }
 }

@@ -2,10 +2,10 @@
 /*
  * @Author: 程英明
  * @Date: 2022-12-23 16:24:23
- * @LastEditTime: 2022-12-23 18:50:45
+ * @LastEditTime: 2023-07-27 10:26:37
  * @LastEditors: 程英明
  * @Description: 
- * @FilePath: \web_server\config\database.php
+ * @FilePath: \web_php6_server\config\database.php
  * QQ:504875043@qq.com
  */
 
@@ -35,11 +35,11 @@ return [
             // 服务器地址
             'hostname'        => env('database.hostname', '127.0.0.1'),
             // 数据库名
-            'database'        => env('database.database', 'demo_in'),
+            'database'        => env('database.database', ''),
             // 用户名
-            'username'        => env('database.username', 'root'),
+            'username'        => env('database.username', ''),
             // 密码
-            'password'        => env('database.password', 'MING,1234'),
+            'password'        => env('database.password', ''),
             // 端口
             'hostport'        => env('database.hostport', '3306'),
             // 数据库连接参数
