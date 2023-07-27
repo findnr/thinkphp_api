@@ -1,12 +1,13 @@
 <!--
  * @Author: 程英明
  * @Date: 2022-12-23 16:24:23
- * @LastEditTime: 2023-07-27 10:41:51
+ * @LastEditTime: 2023-07-27 10:45:07
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \web_php6_server\README.md
  * QQ:504875043@qq.com
 -->
+##### git remote set-url origin https://<你的令牌>@github.com/<你的git用户名>/<要修改的仓库名>.git
 基于thinkphp6.1开发
 使用多应用模式
 ```sh
