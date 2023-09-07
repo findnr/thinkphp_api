@@ -2,7 +2,7 @@
 /*
  * @Author: 程英明
  * @Date: 2023-02-07 15:55:02
- * @LastEditTime: 2023-07-20 11:13:34
+ * @LastEditTime: 2023-09-05 13:46:17
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \api\app\common\serveradmin\TraitCommon.php
@@ -53,13 +53,5 @@ trait TraitCommon
             });
         }
         return array_keys($new_auth);
-        // $re_arr = [];
-        // array_walk($new_auth, function ($v, $k) use (&$re_arr) {
-        //     if (is_int($k)) {
-        //         array_push($re_arr, $k);
-        //     }
-        // });
-        // var_dump($re_arr);
-        // return $re_arr;
     }
 }

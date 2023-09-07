@@ -21,7 +21,13 @@
     ],
     "require": {
         "php": ">=7.2.5",
-        "topthink/framework": "^6.1.0"
+        "topthink/framework": "^6.1.0",
+        "topthink/think-multi-app": "^1.0",
+        "topthink/think-filesystem": "^2.0",
+        "findnr/cym-aliyun": "^1.0",
+        "findnr/cym-phptools": "^1.0",
+        "ramsey/uuid": "^4.2",
+        "gregwar/captcha": "^1.2"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
