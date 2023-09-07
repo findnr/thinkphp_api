@@ -1,13 +1,17 @@
 <!--
  * @Author: 程英明
  * @Date: 2022-12-23 16:24:23
- * @LastEditTime: 2023-07-27 11:16:19
+ * @LastEditTime: 2023-09-07 11:01:05
  * @LastEditors: 程英明
- * @Description: 
- * @FilePath: \web_php6_server\README.md
+ * @Description: git remote set-url origin https://<你的令牌>@github.com/<你的git用户名>/<要修改的仓库名>.git
+ * @FilePath: \thinkphp_api\README.md
  * QQ:504875043@qq.com
 -->
-##### git remote set-url origin https://<你的令牌>@github.com/<你的git用户名>/<要修改的仓库名>.git
+### 测试地址
+请大家不要更改管理员帐号和密码：帐号：admin 密码：123456
+- 后台测试：https://thinkphpvue.cym504875043.repl.co/#/auth/admin
+- 前台测试：正在开中！！！
+##### 具体操作
 基于thinkphp6.1开发
 使用多应用模式
 ```sh
@@ -29,7 +33,7 @@ composer require gregwar/captcha
 ```
 ### 使用方法
 - 使用的是thinkphp多应用模式所以要在app创建一个应用名称，配制好数据库
-- 本系统现使用的sqlit作为测试数据，可使用thinkphp支持的其它数据（例如mysql,mariadb,pgsql等数据库）
+- 本系统现暂支持mysql
 ##### 具体的步骤
 - 1、创建一个应用（在app目录下）
 - 2、在应用中创建一个配制文件（config）同时创建好数据库配制文件（database.php）
