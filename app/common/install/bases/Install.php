@@ -25,6 +25,9 @@ class Install
         AdminNav::databases();
         AdminRole::databases();
         NavType::databases();
+        SystemConfig::databases();
+        UploadType::databases();
+        UploadContent::databases();
         /** 创建模型控制器和中间件------------------------------------------- */
         TmpController::create();
         TmpServerAdmin::create();

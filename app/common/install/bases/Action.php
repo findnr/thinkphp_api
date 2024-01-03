@@ -21,11 +21,8 @@ class Action extends Base
   {
     $sql = [];
     try {
-
       Db::name('action')->where('1=1')->find();
     } catch (\Throwable $th) {
-      echo 1231232;
-      //throw $th;
       $sql[] = <<<str
          CREATE TABLE `action` (
             `id` int(11) NOT NULL COMMENT '自增ID',

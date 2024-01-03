@@ -2,7 +2,7 @@
 /*
  * @Author: 程英明
  * @Date: 2023-04-12 15:11:10
- * @LastEditTime: 2023-05-09 15:01:55
+ * @LastEditTime: 2024-01-03 08:59:27
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \api\app\common\install\bases\TmpServerAdmin.php
@@ -18,11 +18,11 @@ class TmpServerAdmin extends Base
     protected static function dirName()
     {
         $name = 'server' . DIRECTORY_SEPARATOR . 'admin';
-        return [$name, $name, $name, $name, $name, $name];
+        return [$name, $name, $name, $name, $name, $name, $name];
     }
     protected static function fileName()
     {
-        return ['Base.php', 'Common.php', 'MangerUser.php', 'User.php', 'Nav.php', 'System.php'];
+        return ['Base.php', 'Common.php', 'MangerUser.php', 'User.php', 'Nav.php', 'System.php', 'Upload.php'];
     }
     protected static function fileContent()
     {
@@ -33,6 +33,7 @@ class TmpServerAdmin extends Base
         $content[] = self::_user();
         $content[] = self::_nav();
         $content[] = self::_system();
+        $content[] = self::_upload();
         return $content;
     }
     private static function _system()
@@ -123,6 +124,20 @@ namespace app\\' . $app . '\server\admin;
 class Common extends Base
 {
     use \app\common\serveradmin\TraitCommon;
+}';
+        return $str;
+    }
+    private static function _upload()
+    {
+        $app = app('http')->getName();
+        $str = '<?php
+declare(strict_types=1);
+        
+namespace app\\' . $app . '\server\admin;
+        
+class Common extends Base
+{
+    use \app\common\serveradmin\TraitUpload;
 }';
         return $str;
     }

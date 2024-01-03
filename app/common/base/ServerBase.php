@@ -15,6 +15,7 @@ namespace app\common\base;
 
 use think\App;
 use think\facade\Filesystem;
+use think\facade\Db;
 
 class ServerBase
 {
@@ -87,6 +88,16 @@ class ServerBase
      */
     public function fileOne(string $name = '', array $file = [])
     {
+        $sys_config = null;
+        if ($name == '') {
+            try {
+                $sys_config = Db::name('system_config')->where('status', 1)->where('get_name', 'file_upload_path')->find();
+            } catch (\Throwable $th) {
+            }
+        }
+        if ($sys_config) {
+            $name = $sys_config['content'];
+        }
         $file = count($file) == 0 ? $this->file['file'][0] : $file;
         return Filesystem::disk('public')->putFile($name, $file);
     }
@@ -100,6 +111,16 @@ class ServerBase
      */
     public function fileMore(string $name = '', array $files = [])
     {
+        $sys_config = null;
+        if ($name == '') {
+            try {
+                $sys_config = Db::name('system_config')->where('status', 1)->where('get_name', 'file_upload_path')->find();
+            } catch (\Throwable $th) {
+            }
+        }
+        if ($sys_config) {
+            $name = $sys_config['content'];
+        }
         $savename = [];
         $files = count($files) == 0 ? $this->file['file'] : $files;
         foreach ($files as $file) {

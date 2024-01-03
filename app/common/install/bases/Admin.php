@@ -2,7 +2,7 @@
 /*
  * @Author: 程英明
  * @Date: 2023-02-15 11:21:03
- * @LastEditTime: 2023-05-09 15:01:40
+ * @LastEditTime: 2024-01-03 08:45:20
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \api\app\common\install\bases\Admin.php
@@ -21,7 +21,7 @@ class Admin extends Base
     {
         $sql = [];
         try {
-            Db::name('action')->where('1=1')->find();
+            Db::name('admin')->where('1=1')->find();
         } catch (\Throwable $th) {
             //throw $th;
             $sql[] = <<<str
