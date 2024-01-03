@@ -2,7 +2,7 @@
 /*
  * @Author: 程英明
  * @Date: 2023-04-12 15:11:10
- * @LastEditTime: 2024-01-03 08:59:27
+ * @LastEditTime: 2024-01-03 16:43:33
  * @LastEditors: 程英明
  * @Description: 
  * @FilePath: \api\app\common\install\bases\TmpServerAdmin.php
@@ -135,7 +135,7 @@ declare(strict_types=1);
         
 namespace app\\' . $app . '\server\admin;
         
-class Common extends Base
+class Upload extends Base
 {
     use \app\common\serveradmin\TraitUpload;
 }';
