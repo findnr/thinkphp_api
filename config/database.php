@@ -2,8 +2,8 @@
 /*
  * @Author: 程英明
  * @Date: 2022-12-23 16:24:23
- * @LastEditTime: 2023-07-27 10:26:37
- * @LastEditors: 程英明
+ * @LastEditTime: 2024-04-08 14:42:42
+ * @LastEditors: findnr
  * @Description: 
  * @FilePath: \web_php6_server\config\database.php
  * QQ:504875043@qq.com
@@ -35,11 +35,11 @@ return [
             // 服务器地址
             'hostname'        => env('database.hostname', '127.0.0.1'),
             // 数据库名
-            'database'        => env('database.database', ''),
+            'database'        => env('database.database', 'test'),
             // 用户名
-            'username'        => env('database.username', ''),
+            'username'        => env('database.username', 'test'),
             // 密码
-            'password'        => env('database.password', ''),
+            'password'        => env('database.password', 'test,1234'),
             // 端口
             'hostport'        => env('database.hostport', '3306'),
             // 数据库连接参数
