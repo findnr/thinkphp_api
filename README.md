@@ -32,11 +32,12 @@ composer require gregwar/captcha
 - 第二步：如果是linux 执行：sh install.sh ,如果是win就要复制上边的安装代码进行安装（composer install 和其它）
 - 第三步：配制好数据库和多应用
 ##### 具体的步骤
-1、创建一个应用（在app目录下）
-2、在应用中创建一个配制文件（config）同时创建好数据库配制文件（database.php）
-3、在应用创建一个控制器文件（controller）同时在创建一个安装文件（Install.php）
-4、使用的是thinkphp多应用模式所以要在app创建一个应用名称，配制好数据库
-5、本系统现暂支持mysql
+- 1、创建一个应用（在app目录下）
+- 2、在应用中创建一个配制文件（config）同时创建好数据库配制文件（database.php）
+- 3、在应用创建一个控制器文件（controller）同时在创建一个安装文件（Install.php）
+- 4、使用的是thinkphp多应用模式所以要在app创建一个应用名称，配制好数据库
+- 5、本系统现暂支持mysql
+- 6、public文件夹下的文件上传的文件夹的权限为777
 - 第四步：在应用中控制器建一个安装类
 ##### 具体操作
 ```php
