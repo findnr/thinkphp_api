@@ -2,7 +2,7 @@
 /*
  * @Author: 程英明
  * @Date: 2023-07-26 15:11:55
- * @LastEditTime: 2024-04-08 14:47:25
+ * @LastEditTime: 2024-04-08 14:49:43
  * @LastEditors: findnr
  * @Description: 
  * @FilePath: \thinkphp_api\app\test\config\database.php
@@ -35,11 +35,11 @@ return [
             // 服务器地址
             'hostname'        => env('database.hostname', '127.0.0.1'),
             // 数据库名
-            'database'        => env('database.database', 'test'),
+            'database'        => env('database.database', 'demo'),
             // 用户名
-            'username'        => env('database.username', 'test'),
+            'username'        => env('database.username', 'demo'),
             // 密码
-            'password'        => env('database.password', 'test,1234'),
+            'password'        => env('database.password', 'demo,1234'),
             // 端口
             'hostport'        => env('database.hostport', '3306'),
             // 数据库连接参数
