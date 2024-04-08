@@ -9,7 +9,7 @@
 -->
 ### 测试地址
 请大家不要更改管理员帐号和密码：帐号：admin 密码：123456
-- 后台测试：https://thinkphpvue.cym504875043.repl.co/#/auth/admin (github地址：https://github.com/findnr/vue-element-plus-temp)
+- 后台测试：https://demo.findbox.icu/#/auth/admin (github地址：https://github.com/findnr/vue-element-plus-temp)
 - 前台测试：正在开中！！！
 ##### 具体操作
 基于thinkphp6.1开发
